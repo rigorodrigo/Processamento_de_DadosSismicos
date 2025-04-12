@@ -7,7 +7,7 @@
 
 int main () {
 
-
+    int FORMATO_SAIDA, NUM_LEITURAS, TEMPO_LIMITE;
 
 
     return 0;
