@@ -42,7 +42,11 @@ int main (int argc, char *argv[] ) {
         exit(EXIT_FAILURE);
     }
 
-    
+    int pipefd [2];
+    pipe(pipefd);
+
+    pid_t pid_esr = fork();
+
 
 
     return 0;
