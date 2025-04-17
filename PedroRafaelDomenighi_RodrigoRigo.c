@@ -5,6 +5,22 @@
 #include <string.h>
 #include <stdlib.h>
 
+#define VERDE  "\033[32m"
+#define AZUL   "\033[34m"
+#define RESET  "\033[0m"
+
+void trata_SIGINT(int sig) {
+    printf(AZUL "[CPG PID:%d] Análise interrompida pelo pesquisador!\n" RESET, getpid());
+    close(pipe_fd[0]);
+    exit(EXIT_FAILURE);
+}
+
+void trata_SIGALRM(int sig) {
+    printf(AZUL "[CPG PID:%d] Processamento excedeu o tempo limite!\n" RESET, getpid());
+    close(pipe_fd[0]);
+    exit(EXIT_FAILURE);
+}
+
 
 int main (int argc, char *argv[] ) {
 
