@@ -12,6 +12,16 @@
 int pipefd [2], formato_saida,num_leituras,tempo_limite;
 pid_t pid_esr, pid_cpg;
 
+// implementação do log
+void escreve_log(const char *mensagem) {
+    FILE *log = fopen("registro.log", "a");
+    if (log) {
+        time_t agora = time(NULL);
+        fprintf(log, "[%ld] %s\n", agora, mensagem);
+        fclose(log);
+    }
+}
+
 void trata_SIGINT(int sig) {
     printf(AZUL "[CPG PID:%d] Análise interrompida pelo pesquisador!\n" RESET, getpid());
     close(pipefd[0]);
@@ -58,6 +68,7 @@ void printa_numero_binario(unsigned short n){
         printf("%d", (n >> i) & 1);
     }
 }
+// Função ESR
 void processo_esr() {
     close(pipefd[0]); // Fecha leitura
     srand(time(NULL) ^ getpid());
@@ -80,6 +91,34 @@ void processo_esr() {
 
     escreve_log("ESR finalizou transmissão.");
     close(pipefd[1]);
+    exit(EXIT_SUCCESS);
+}
+//Função CPG
+void processo_cpg() {
+    close(pipefd[1]); // Fecha escrita
+    signal(SIGINT, trata_SIGINT);
+    signal(SIGALRM, trata_SIGALRM);
+    alarm(tempo_limite);
+
+    unsigned short valor;
+    int leitura = 1;
+
+    while (read(pipefd[0], &valor, sizeof(unsigned short)) > 0) {
+        printf(AZUL "[CPG PID:%d] Recebido: ", getpid());
+        printa_numero_binario(valor);
+        printf(" -> ");
+        printa_numero_convertido(valor);
+        fflush(stdout);
+
+        char log_msg[100];
+        sprintf(log_msg, "CPG PID:%d - Leitura #%d recebida: %u", getpid(), leitura, valor);
+        escreve_log(log_msg);
+        leitura++;
+    }
+
+    escreve_log("CPG finalizou processamento.");
+    close(pipefd[0]);
+    printf(AZUL "[CPG PID:%d] Conclusão normal.\n" RESET, getpid());
     exit(EXIT_SUCCESS);
 }
 
@@ -113,45 +152,38 @@ int main (int argc, char *argv[] ) {
         perror("erro no pipe");
         exit(EXIT_FAILURE);
     }
-
+    
+    escreve_log("Início da simulação.");
+    
     pid_esr = fork();
-
     if (pid_esr < 0) {
-        perror ("erro ao criar processo filho");
+        perror("Erro ao criar processo ESR");
+        escreve_log("Erro ao criar processo ESR.");
         exit(EXIT_FAILURE);
     }
 
-    if (pid_esr == 0) {       // processo ESR
-        close(pipefd[0]);   // fechando a extremidade de leitura do pipe
-        srand(time(NULL) ^ getpid());
-
-        for (int i = 0; i < num_leituras; i++){
-            unsigned short dado = rand() % 65536;            // gerando um num binário de 16 bits
-            write (pipefd[1], &dado , sizeof(unsigned short));            // envia o dado para o pipe
-           
-            printf(VERDE "[ESR PID:%d] Leitura #%d: ", getpid(), i + 1);
-            printa_numero_binario(dado);
-            printf(" transmitida.\n" RESET);
-
-            sleep(1);
-        }
-
-        close (pipefd[1]); // fecha a extremidade de escrita do pipe
-        exit(0);
+    if (pid_esr == 0) {
+        processo_esr();
     }
 
-    else {  // processo CPG
-
-        pid_cpg = fork();   
-        close(pipefd[1]); // Fecha escrita
-
-        signal(trata_SIGINT, trata_SIGINT);
-        signal(trata_SIGALRM, trata_SIGALRM);
-        alarm(tempo_limite); 
-    
-        unsigned short valor;  // variável que receberá cada leitura do pipe 
-
+    pid_cpg = fork();
+    if (pid_cpg < 0) {
+        perror("Erro ao criar processo CPG");
+        escreve_log("Erro ao criar processo CPG.");
+        exit(EXIT_FAILURE);
     }
 
+    if (pid_cpg == 0) {
+        processo_cpg();
+    }
+
+    char log_msg[100];
+    sprintf(log_msg, "Processos criados: ESR PID=%d, CPG PID=%d", pid_esr, pid_cpg);
+    escreve_log(log_msg);
+
+    wait(NULL);
+    wait(NULL);
+
+    escreve_log("Execução encerrada com sucesso.");
     return 0;
 }
