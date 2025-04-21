@@ -4,6 +4,8 @@
 #include <time.h>
 #include <string.h>
 #include <stdlib.h>
+#include <signal.h>
+#include <sys/wait.h>
 
 #define VERDE  "\033[32m"
 #define AZUL   "\033[34m"
