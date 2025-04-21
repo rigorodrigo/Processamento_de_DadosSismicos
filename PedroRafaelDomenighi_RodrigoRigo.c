@@ -48,7 +48,7 @@ void printa_numero_convertido (unsigned short n){
         break;
 
     default:
-        fprintf(stderr, "Erro: FORMATO_SAIDA deve ser 2, 8, 10 ou 16.\n");
+        fprintf(stderr, "Erro: FORMATO_SAIDA deve ser 2, 8, 10 ou 16.\n");  // não é necessário, mas para manter o default eu deixei
         exit(EXIT_FAILURE);
     }
 }
@@ -96,8 +96,36 @@ int main (int argc, char *argv[] ) {
         exit(EXIT_FAILURE);
     }
 
-    if (pid_esr == 0) {
+    if (pid_esr == 0) {       // processo ESR
         close(pipefd[0]);   // fechando a extremidade de leitura do pipe
+        srand(time(NULL) ^ getpid());
+
+        for (int i = 0; i < num_leituras; i++){
+            unsigned short dado = rand() % 65536;            // gerando um num binário de 16 bits
+            write (pipefd[1], &dado , sizeof(unsigned short));            // envia o dado para o pipe
+           
+            printf(VERDE "[ESR PID:%d] Leitura #%d: ", getpid(), i + 1);
+            printa_numero_binario(dado);
+            printf(" transmitida.\n" RESET);
+
+            sleep(1);
+        }
+
+        close (pipefd[1]); // fecha a extremidade de escrita do pipe
+        exit(0);
+    }
+
+    else {  // processo CPG
+
+        pid_cpg = fork();   
+        close(pipefd[1]); // Fecha escrita
+
+        signal(trata_SIGINT, trata_SIGINT);
+        signal(trata_SIGALRM, trata_SIGALRM);
+        alarm(tempo_limite); 
+    
+        unsigned short valor;  // variável que receberá cada leitura do pipe 
+
     }
 
     return 0;
