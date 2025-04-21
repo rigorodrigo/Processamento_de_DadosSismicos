@@ -58,6 +58,31 @@ void printa_numero_binario(unsigned short n){
         printf("%d", (n >> i) & 1);
     }
 }
+void processo_esr() {
+    close(pipefd[0]); // Fecha leitura
+    srand(time(NULL) ^ getpid());
+
+    for (int i = 0; i < num_leituras; i++) {
+        unsigned short dado = rand() % 65536;
+        write(pipefd[1], &dado, sizeof(unsigned short));
+
+        printf(VERDE "[ESR PID:%d] Leitura #%d: ", getpid(), i + 1);
+        printa_numero_binario(dado);
+        printf(" transmitida.\n" RESET);
+        fflush(stdout);
+
+        char log_msg[100];
+        sprintf(log_msg, "ESR PID:%d - Leitura #%d transmitida: %u", getpid(), i + 1, dado);
+        escreve_log(log_msg);
+
+        sleep(1);
+    }
+
+    escreve_log("ESR finalizou transmissão.");
+    close(pipefd[1]);
+    exit(EXIT_SUCCESS);
+}
+
 
 
 int main (int argc, char *argv[] ) {
