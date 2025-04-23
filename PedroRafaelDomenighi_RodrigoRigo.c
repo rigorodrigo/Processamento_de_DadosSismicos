@@ -128,25 +128,25 @@ void processo_cpg() {
 
 int main (int argc, char *argv[] ) {
 
+    if (argc != 4) {
+       fprintf(stderr, "Uso: %s <FORMATO_SAIDA> <NUM_LEITURAS> <TEMPO_LIMITE>\n", argv[0]);
+       exit(EXIT_FAILURE);
+    }
+
     formato_saida = atoi(argv[1]);
     num_leituras = atoi(argv[2]);
     tempo_limite = atoi(argv[3]);
-
-    if (argc != 4) {
-       fprintf(stderr, "Uso: %s <FORMATO_SAIDA> <NUM_LEITURAS> <TEMPO_LIMITE>", argv[0]);
-       exit(EXIT_FAILURE);
-    }
 
     if (formato_saida != 2 && formato_saida != 8 && formato_saida != 10 && formato_saida != 16){
         fprintf(stderr, "Erro: FORMATO_SAIDA deve ser 2, 8, 10 ou 16.\n");
         exit(EXIT_FAILURE);
     }
     if (num_leituras <= 0){
-        fprintf(stderr, "Erro: NUM_LEITURAS deve ser um inteiro positivo.");
+        fprintf(stderr, "Erro: NUM_LEITURAS deve ser um inteiro positivo.\n");
         exit(EXIT_FAILURE);
     }
     if (tempo_limite <= 0 ) {
-        fprintf(stderr, "Erro: NUM_LEITURAS deve ser um inteiro positivo.");
+        fprintf(stderr, "Erro: NUM_LEITURAS deve ser um inteiro positivo.\n");
         exit(EXIT_FAILURE);
     }
 
