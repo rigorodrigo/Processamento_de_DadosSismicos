@@ -118,6 +118,8 @@ void processo_cpg() {
         leitura++;
     }
 
+    alarm(0);
+
     escreve_log("CPG finalizou processamento.");
     close(pipefd[0]);
     printf(AZUL "[CPG PID:%d] Conclusão normal.\n" RESET, getpid());
