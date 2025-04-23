@@ -118,7 +118,7 @@ void processo_cpg() {
         leitura++;
     }
 
-    alarm(0);
+ 
 
     escreve_log("CPG finalizou processamento.");
     close(pipefd[0]);
@@ -181,12 +181,14 @@ int main (int argc, char *argv[] ) {
         processo_cpg();
     }
 
+    close (pipefd[0]);
+    close (pipefd[1]);
     char log_msg[100];
     sprintf(log_msg, "Processos criados: ESR PID=%d, CPG PID=%d", pid_esr, pid_cpg);
     escreve_log(log_msg);
 
-    wait(NULL);
-    wait(NULL);
+    waitpid(pid_esr,NULL,0);
+    waitpid(pid_cpg,NULL,0);
 
     escreve_log("Execução encerrada com sucesso.");
     return 0;

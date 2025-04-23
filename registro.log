@@ -53,3 +53,86 @@
 [1745413768] CPG PID:7182 - Leitura #5 recebida: 36814
 [1745413769] ESR finalizou transmissão.
 [1745413784] Execução encerrada com sucesso.
+[1745445317] Início da simulação.
+[1745445317] Processos criados: ESR PID=4594, CPG PID=4595
+[1745445317] ESR PID:4594 - Leitura #1 transmitida: 37658
+[1745445317] CPG PID:4595 - Leitura #1 recebida: 37658
+[1745445318] ESR PID:4594 - Leitura #2 transmitida: 34119
+[1745445318] CPG PID:4595 - Leitura #2 recebida: 34119
+[1745445319] CPG PID:4595 - Leitura #3 recebida: 57161
+[1745445319] ESR PID:4594 - Leitura #3 transmitida: 57161
+[1745445320] ESR PID:4594 - Leitura #4 transmitida: 13177
+[1745445320] CPG PID:4595 - Leitura #4 recebida: 13177
+[1745445321] ESR PID:4594 - Leitura #5 transmitida: 52431
+[1745445321] CPG PID:4595 - Leitura #5 recebida: 52431
+[1745445322] ESR finalizou transmissão.
+[1745445341] Execução encerrada com sucesso.
+[1745445399] Início da simulação.
+[1745445399] Processos criados: ESR PID=4738, CPG PID=4739
+[1745445399] ESR PID:4738 - Leitura #1 transmitida: 1951
+[1745445400] ESR PID:4738 - Leitura #2 transmitida: 38772
+[1745445401] ESR PID:4738 - Leitura #3 transmitida: 12450
+[1745445402] ESR PID:4738 - Leitura #4 transmitida: 46037
+[1745445403] ESR PID:4738 - Leitura #5 transmitida: 59318
+[1745445404] ESR finalizou transmissão.
+[1745445423] Execução encerrada com sucesso.
+[1745445528] Início da simulação.
+[1745445528] Processos criados: ESR PID=5044, CPG PID=5045
+[1745445528] ESR PID:5044 - Leitura #1 transmitida: 6236
+[1745445529] ESR PID:5044 - Leitura #2 transmitida: 63268
+[1745445530] ESR PID:5044 - Leitura #3 transmitida: 53405
+[1745445531] ESR PID:5044 - Leitura #4 transmitida: 28774
+[1745445532] ESR PID:5044 - Leitura #5 transmitida: 11447
+[1745445533] ESR finalizou transmissão.
+[1745445552] Execução encerrada com sucesso.
+[1745445617] Início da simulação.
+[1745445617] Processos criados: ESR PID=5196, CPG PID=5197
+[1745445617] ESR PID:5196 - Leitura #1 transmitida: 56429
+[1745445618] ESR PID:5196 - Leitura #2 transmitida: 60736
+[1745445619] ESR PID:5196 - Leitura #3 transmitida: 59629
+[1745445620] ESR PID:5196 - Leitura #4 transmitida: 38836
+[1745445621] ESR PID:5196 - Leitura #5 transmitida: 63391
+[1745445622] ESR finalizou transmissão.
+[1745445641] Execução encerrada com sucesso.
+[1745445950] Início da simulação.
+[1745445950] Processos criados: ESR PID=5516, CPG PID=5517
+[1745445950] ESR PID:5516 - Leitura #1 transmitida: 502
+[1745445950] CPG PID:5517 - Leitura #1 recebida: 502
+[1745445951] ESR PID:5516 - Leitura #2 transmitida: 51592
+[1745445951] CPG PID:5517 - Leitura #2 recebida: 51592
+[1745445952] ESR PID:5516 - Leitura #3 transmitida: 23078
+[1745445952] CPG PID:5517 - Leitura #3 recebida: 23078
+[1745445953] ESR PID:5516 - Leitura #4 transmitida: 22034
+[1745445953] CPG PID:5517 - Leitura #4 recebida: 22034
+[1745445954] ESR PID:5516 - Leitura #5 transmitida: 7558
+[1745445954] CPG PID:5517 - Leitura #5 recebida: 7558
+[1745445955] ESR finalizou transmissão.
+[1745445970] Execução encerrada com sucesso.
+[1745446022] Início da simulação.
+[1745446022] Processos criados: ESR PID=5764, CPG PID=5765
+[1745446022] ESR PID:5764 - Leitura #1 transmitida: 44986
+[1745446022] CPG PID:5765 - Leitura #1 recebida: 44986
+[1745446023] ESR PID:5764 - Leitura #2 transmitida: 30791
+[1745446023] CPG PID:5765 - Leitura #2 recebida: 30791
+[1745446024] ESR PID:5764 - Leitura #3 transmitida: 50246
+[1745446024] CPG PID:5765 - Leitura #3 recebida: 50246
+[1745446025] CPG PID:5765 - Leitura #4 recebida: 16991
+[1745446025] ESR PID:5764 - Leitura #4 transmitida: 16991
+[1745446026] CPG PID:5765 - Leitura #5 recebida: 19515
+[1745446026] ESR PID:5764 - Leitura #5 transmitida: 19515
+[1745446027] ESR finalizou transmissão.
+[1745446116] Início da simulação.
+[1745446116] ESR PID:5854 - Leitura #1 transmitida: 43088
+[1745446116] Processos criados: ESR PID=5854, CPG PID=5855
+[1745446116] CPG PID:5855 - Leitura #1 recebida: 43088
+[1745446117] ESR PID:5854 - Leitura #2 transmitida: 52239
+[1745446117] CPG PID:5855 - Leitura #2 recebida: 52239
+[1745446118] ESR PID:5854 - Leitura #3 transmitida: 7398
+[1745446118] CPG PID:5855 - Leitura #3 recebida: 7398
+[1745446119] CPG PID:5855 - Leitura #4 recebida: 40838
+[1745446119] ESR PID:5854 - Leitura #4 transmitida: 40838
+[1745446120] ESR PID:5854 - Leitura #5 transmitida: 27917
+[1745446120] CPG PID:5855 - Leitura #5 recebida: 27917
+[1745446121] ESR finalizou transmissão.
+[1745446121] CPG finalizou processamento.
+[1745446121] Execução encerrada com sucesso.
